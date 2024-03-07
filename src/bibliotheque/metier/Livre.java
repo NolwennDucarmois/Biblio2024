@@ -1,6 +1,7 @@
 package bibliotheque.metier;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Livre extends Ouvrage{
     private String isbn;
@@ -55,12 +56,27 @@ public class Livre extends Ouvrage{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livre livre = (Livre) o;
+        return Objects.equals(isbn, livre.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn);
+    }
+
+    @Override
     public String toString() {
-        return "Livre{" +
+        return super.toString()+
+                "Livre{" +
                 "isbn='" + isbn + '\'' +
                 ", nombrePages=" + nombrePages +
                 ", typeLivre=" + typeLivre +
                 ", resume='" + resume + '\'' +
-                '}';
+                "} "+
+                super.toString();
     }
 }

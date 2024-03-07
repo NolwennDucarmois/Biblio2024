@@ -108,4 +108,16 @@ public abstract class Ouvrage {
     }
     protected abstract double amendeRetard(int njours);
 
+    @Override
+    public String toString() {
+        return "Ouvrage{" +
+                "titre='" + titre + '\'' +
+                ", ageMin=" + ageMin +
+                ", dateParution=" + dateParution +
+                ", typeOuvrage=" + typeOuvrage +
+                ", prixLocation=" + prixLocation +
+                ", langue='" + langue + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
 }

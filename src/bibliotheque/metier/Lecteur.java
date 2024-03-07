@@ -3,8 +3,10 @@ package bibliotheque.metier;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Lecteur {
+    private static long id_act=1;
     private long numLecteur;
     private String nom;
     private String prenom;
@@ -18,6 +20,7 @@ public class Lecteur {
     }
 
     public Lecteur(String nom, String prenom, LocalDate dateNaiss, String adresse, String mail, String tel) {
+        this.numLecteur=id_act++;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaiss = dateNaiss;
@@ -99,4 +102,29 @@ public class Lecteur {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lecteur lecteur = (Lecteur) o;
+        return numLecteur == lecteur.numLecteur;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numLecteur);
+    }
+
+    @Override
+    public String toString() {
+        return "Lecteur{" +
+                "numLecteur=" + numLecteur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateNaiss=" + dateNaiss +
+                ", adresse='" + adresse + '\'' +
+                ", mail='" + mail + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
+    }
 }

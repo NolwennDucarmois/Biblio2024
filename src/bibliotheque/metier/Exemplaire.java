@@ -2,8 +2,9 @@ package bibliotheque.metier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Exemplaire {
+public class Exemplaire{
     private String matricule;
     private String descriptionEtat;
     private Ouvrage ouvrage;
@@ -16,6 +17,7 @@ public class Exemplaire {
         this.matricule=matricule;
         this.descriptionEtat=descriptionEtat;
         this.ouvrage=ouvrage;
+        this.ouvrage.getListExemplaire().add(this);
     }
 
 
@@ -40,7 +42,9 @@ public class Exemplaire {
     }
 
     public void setRayon(Rayon rayon) {
-        this.rayon = rayon;
+        if(this.rayon!=null) this.rayon.getListExemplaire().remove(this);
+        this.rayon=rayon;
+        this.rayon.getListExemplaire().add(this);
     }
 
     public List<Location> getListLocation() {
@@ -76,6 +80,27 @@ public class Exemplaire {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exemplaire that = (Exemplaire) o;
+        return Objects.equals(matricule, that.matricule);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricule);
+    }
+
+    @Override
+    public String toString() {
+        return "Exemplaire{" +
+                "matricule='" + matricule + '\'' +
+                ", descriptionEtat='" + descriptionEtat + '\'' +
+                ", ouvrage=" + ouvrage +
+                ", rayon=" + rayon +
+                '}';
+    }
 }
 

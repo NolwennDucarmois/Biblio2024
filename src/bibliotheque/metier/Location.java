@@ -1,6 +1,7 @@
 package bibliotheque.metier;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Location {
     private LocalDate dateLoc;
@@ -64,6 +65,19 @@ public class Location {
     }
     public void enregistrerRetour(){
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return Objects.equals(dateLoc, location.dateLoc) && Objects.equals(lecteur, location.lecteur) && Objects.equals(exemplaire, location.exemplaire);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateLoc, lecteur, exemplaire);
     }
 
     @Override

@@ -2,6 +2,7 @@ package bibliotheque.metier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Rayon {
     private String codeRayon;
@@ -44,11 +45,23 @@ public class Rayon {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rayon rayon = (Rayon) o;
+        return Objects.equals(codeRayon, rayon.codeRayon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codeRayon);
+    }
+
+    @Override
     public String toString() {
         return "Rayon{" +
                 "codeRayon='" + codeRayon + '\'' +
                 ", genre='" + genre + '\'' +
-                ", listExemplaire=" + listExemplaire +
                 '}';
     }
 }
