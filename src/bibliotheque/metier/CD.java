@@ -51,6 +51,7 @@ public class CD extends Ouvrage{
         return code == cd.code;
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(code);
