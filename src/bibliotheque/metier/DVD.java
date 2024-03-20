@@ -7,20 +7,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class DVD extends Ouvrage{
+
     private long code;
-    private LocalTime dureeTotal;
+    private LocalTime dureeTotale;
     private byte nbreBonus;
-    private List<String> autresLangues = new ArrayList<>();
-    private List<String> sousTitres = new ArrayList<>();
-    public DVD(){
-
-    }
-
-    public DVD(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, long code, LocalTime dureeTotal, byte nbreBonus, List<String> autresLangues, List<String> sousTitres) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre);
-        this.code = code;
-        this.dureeTotal = dureeTotal;
-        this.nbreBonus = nbreBonus;
+    private List<String> autresLangues=new ArrayList<>();
+    private List<String> sousTitres=new ArrayList<>();
+    public DVD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, LocalTime dureeTotale, byte nbreBonus) {
+        super(titre, ageMin, dateParution, TypeOuvrage.DVD, prixLocation, langue, genre);
+        this.code=code;
+       this.dureeTotale=dureeTotale;
+       this.nbreBonus=nbreBonus;
     }
 
     public long getCode() {
@@ -31,12 +28,12 @@ public class DVD extends Ouvrage{
         this.code = code;
     }
 
-    public LocalTime getDureeTotal() {
-        return dureeTotal;
+    public LocalTime getDureeTotale() {
+        return dureeTotale;
     }
 
-    public void setDureeTotal(LocalTime dureeTotal) {
-        this.dureeTotal = dureeTotal;
+    public void setDureeTotale(LocalTime dureeTotale) {
+        this.dureeTotale = dureeTotale;
     }
 
     public byte getNbreBonus() {
@@ -62,9 +59,6 @@ public class DVD extends Ouvrage{
     public void setSousTitres(List<String> sousTitres) {
         this.sousTitres = sousTitres;
     }
-    public double amendeRetard(int njours){
-        return 0;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -78,17 +72,25 @@ public class DVD extends Ouvrage{
     public int hashCode() {
         return Objects.hash(code);
     }
+    @Override
+    public double amendeRetard(int njours) {
+
+        return njours * 1.50;
+    }
+
+    @Override
+    public int njlocmax() {
+        return 3;
+    }
 
     @Override
     public String toString() {
-        return super.toString()+
-                "DVD{" +
+        return super.toString()+"DVD{" +
                 "code=" + code +
-                ", dureeTotal=" + dureeTotal +
+                ", dureeTotale='" + dureeTotale + '\'' +
                 ", nbreBonus=" + nbreBonus +
                 ", autresLangues=" + autresLangues +
                 ", sousTitres=" + sousTitres +
-                "} "+
-                super.toString();
+                "} " + super.toString();
     }
 }

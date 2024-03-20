@@ -7,41 +7,11 @@ import java.util.Objects;
 public class Rayon {
     private String codeRayon;
     private String genre;
-    private List<Exemplaire> listExemplaire = new ArrayList<>();
-    public Rayon(){
+    private List<Exemplaire> lex = new ArrayList<>();
 
-    }
-    public Rayon(String codeRayon, String genre){
-        this.codeRayon=codeRayon;
-        this.genre=genre;
-    }
-
-    public String getCodeRayon() {
-        return codeRayon;
-    }
-
-    public void setCodeRayon(String codeRayon) {
+    public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public List<Exemplaire> getListExemplaire() {
-        return listExemplaire;
-    }
-
-    public void setListExemplaire(List<Exemplaire> listExemplaire) {
-        this.listExemplaire = listExemplaire;
-    }
-
-    public void listerExamplaires(){
-
     }
 
     @Override
@@ -64,4 +34,42 @@ public class Rayon {
                 ", genre='" + genre + '\'' +
                 '}';
     }
+    public void addExemplaire(Exemplaire e){
+        lex.add(e);
+        e.setRayon(this);
+    }
+
+    public void remove(Exemplaire e){
+        lex.remove(e);
+        e.setRayon(null);
+    }
+    public String getCodeRayon() {
+        return codeRayon;
+    }
+
+    public void setCodeRayon(String codeRayon) {
+        this.codeRayon = codeRayon;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public List<Exemplaire> getLex() {
+        return lex;
+    }
+
+    public void setLex(List<Exemplaire> lex) {
+        this.lex = lex;
+    }
+
+    public List<Exemplaire>listerExemplaires(){
+        return lex;
+    }
+
+
 }

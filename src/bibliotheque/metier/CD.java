@@ -7,16 +7,13 @@ import java.util.Objects;
 public class CD extends Ouvrage{
     private long code;
     private byte nbrePlages;
-    private String dureeTotal;
-    public CD(){
+    private LocalTime dureeTotale;
 
-    }
-
-    public CD(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, long code, byte nbrePlages, String dureeTotal) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre);
-        this.code = code;
-        this.nbrePlages = nbrePlages;
-        this.dureeTotal = dureeTotal;
+    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) {
+        super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
+        this.code=code;
+        this.nbrePlages=nbrePlages;
+        this.dureeTotale=dureeTotale;
     }
 
     public long getCode() {
@@ -35,12 +32,12 @@ public class CD extends Ouvrage{
         this.nbrePlages = nbrePlages;
     }
 
-    public String getDureeTotal() {
-        return dureeTotal;
+    public LocalTime getDureeTotale() {
+        return dureeTotale;
     }
 
-    public void setDureeTotal(String dureeTotal) {
-        this.dureeTotal = dureeTotal;
+    public void setDureeTotale(LocalTime dureeTotale) {
+        this.dureeTotale = dureeTotale;
     }
 
     @Override
@@ -51,24 +48,27 @@ public class CD extends Ouvrage{
         return code == cd.code;
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(code);
     }
+    @Override
+    public double amendeRetard(int njours) {
 
-    public double amendeRetard(int njours){
-        return 0;
+        return njours*0.50;
+    }
+
+    @Override
+    public int njlocmax() {
+        return 7;
     }
 
     @Override
     public String toString() {
-        return super.toString()+
-                "CD{" +
+        return super.toString()+"CD{" +
                 "code=" + code +
                 ", nbrePlages=" + nbrePlages +
-                ", dureeTotal=" + dureeTotal +
-                "} "+
-                super.toString();
+                ", dureeTotale='" + dureeTotale + '\'' +
+                "} " + super.toString();
     }
 }

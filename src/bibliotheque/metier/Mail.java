@@ -1,14 +1,9 @@
 package bibliotheque.metier;
 
-import java.time.LocalDateTime;
-
 public class Mail {
     private String objet;
     private String message;
     private String dateEnvoi;
-    public Mail(){
-
-    }
 
     public Mail(String objet, String message, String dateEnvoi) {
         this.objet = objet;
@@ -45,7 +40,7 @@ public class Mail {
         return "Mail{" +
                 "objet='" + objet + '\'' +
                 ", message='" + message + '\'' +
-                ", dateEnvoi=" + dateEnvoi +
+                ", dateEnvoi='" + dateEnvoi + '\'' +
                 '}';
     }
 }
