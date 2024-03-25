@@ -116,7 +116,7 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesEnLocation() {
-        //TODO lister exemplaires en location lecteur
+        //lister exemplaires en location lecteur
         List<Exemplaire> liste = new ArrayList<>();
         for (Location l : lloc) {
             if (l.getDateRestitution() != null) {
@@ -127,7 +127,7 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesEnLoues() {
-        //TODO lister exemplaires loues lecteur
+        // lister exemplaires loues lecteur
         List<Exemplaire> liste = new ArrayList<>();
         for (Location l : lloc) {
             if (l.getDateRestitution() == null) {
