@@ -158,6 +158,10 @@ public class Gestion {
         lex.add(ex);
         System.out.println("exemplaire créé");
         //TODO attribuer rayon
+        // lister tous les rayons et choisir
+        //int ch = Utilitaire.choixListe(lrayon);
+        //ex.setRayon(lrayon.get(ch-1));
+        //lrayon.get(ch-1).setLex(ex);
     }
 
     private void gestOuvrages() {

@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class Lecteur {
     private int numlecteur;
-    private  String nom,prenom;
+    private String nom, prenom;
     private LocalDate dn;
     private String adresse;
     private String mail;
     private String tel;
 
-    private List<Location> lloc=new ArrayList<>();
+    private List<Location> lloc = new ArrayList<>();
 
     public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) {
         this.numlecteur = numlecteur;
@@ -115,12 +115,18 @@ public class Lecteur {
         return Objects.hash(numlecteur);
     }
 
-    public List<Exemplaire> listerExemplairesEnLocation(){
+    public List<Exemplaire> listerExemplairesEnLocation() {
         //TODO lister exemplaires en location lecteur
-        return null;
+        List<Exemplaire> liste = new ArrayList<>();
+        for (Location l : lloc) {
+            if (l.getDateRestitution() != null) {
+                liste.add(l.getExemplaire());
+            }
+        }
+        return liste;
     }
 
-    public List<Exemplaire> listerExemplairesEnLoues(){
+    public List<Exemplaire> listerExemplairesEnLoues() {
         //TODO lister exemplaires loues lecteur
         return null;
     }
