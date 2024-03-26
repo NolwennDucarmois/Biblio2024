@@ -116,7 +116,7 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesEnLocation() {
-        //lister exemplaires en location lecteur
+        // lister exemplaires en location lecteur
         List<Exemplaire> liste = new ArrayList<>();
         for (Location l : lloc) {
             if (l.getDateRestitution() != null) {

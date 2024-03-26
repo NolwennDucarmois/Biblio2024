@@ -170,10 +170,10 @@ public class Gestion {
         Exemplaire ex = new Exemplaire(mat, etat, louv.get(choix - 1));
         lex.add(ex);
         System.out.println("exemplaire créé");
-        //TODO attribuer rayon
+        // attribuer rayon
         // lister tous les rayons et choisir
         int ch = Utilitaire.choixListe(lrayon);
-        ex.setRayon(lrayon.get(ch-1));
+        ex.setRayon(lrayon.get(ch - 1));
     }
 
     private void gestOuvrages() {
@@ -238,16 +238,19 @@ public class Gestion {
                 do {
                     choix = Utilitaire.choixListe(langues);
                     if (choix == langues.size()) break;
-                    ((DVD) o).getSousTitres().add(langues.get(choix - 1));//TODO vérifier unicité ou utiliser set
+                    // vérifier unicité ou utiliser set
+                    String tmp = langues.get(choix - 1);
+                    if (!((DVD) o).getSousTitres().contains(tmp)) {
+                        ((DVD) o).getSousTitres().add(tmp);
+                    }
                 } while (true);
                 ;
                 break;
         }
         louv.add(o);
         System.out.println("ouvrage créé");
-        // TODO ajouter 1 auteur à la liste des auteurs
+        // ajouter 1 auteur à la liste des auteurs
         gestAuteurs();
-        // faire pour donner à l'ouvrage
     }
 
     private void gestAuteurs() {
