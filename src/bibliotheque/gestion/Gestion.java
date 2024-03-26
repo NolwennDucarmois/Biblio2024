@@ -244,7 +244,6 @@ public class Gestion {
                         ((DVD) o).getSousTitres().add(tmp);
                     }
                 } while (true);
-                ;
                 break;
         }
         louv.add(o);
