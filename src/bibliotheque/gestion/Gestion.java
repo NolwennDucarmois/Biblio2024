@@ -172,9 +172,8 @@ public class Gestion {
         System.out.println("exemplaire créé");
         //TODO attribuer rayon
         // lister tous les rayons et choisir
-        //int ch = Utilitaire.choixListe(lrayon);
-        //ex.setRayon(lrayon.get(ch-1));
-        //lrayon.get(ch-1).setLex(ex);
+        int ch = Utilitaire.choixListe(lrayon);
+        ex.setRayon(lrayon.get(ch-1));
     }
 
     private void gestOuvrages() {
@@ -246,7 +245,7 @@ public class Gestion {
         }
         louv.add(o);
         System.out.println("ouvrage créé");
-        // ajouter 1 auteur à la liste des auteurs
+        // TODO ajouter 1 auteur à la liste des auteurs
         gestAuteurs();
         // faire pour donner à l'ouvrage
     }
