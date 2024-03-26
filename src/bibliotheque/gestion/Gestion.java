@@ -232,7 +232,12 @@ public class Gestion {
                 do {
                     choix = Utilitaire.choixListe(langues);
                     if (choix == langues.size()) break;
-                    ((DVD) o).getAutresLangues().add(langues.get(choix - 1));//TODO vérifier unicité ou utiliser set et pas de doublon avec langue d'origine
+                    // vérifier unicité ou utiliser set et pas de doublon avec langue d'origine
+                    String tmp = langues.get(choix - 1);
+                    // if(vérifie l'unicité || vérifie qu'il n'est pas la langue d'origine)
+                    if (!(((DVD) o).getAutresLangues().contains(tmp) || ((DVD) o).getLangue().equals(tmp))) {
+                        ((DVD) o).getAutresLangues().add(langues.get(choix - 1));
+                    }
                 } while (true);
                 System.out.println("sous-titres");
                 do {
