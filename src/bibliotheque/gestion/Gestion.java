@@ -8,10 +8,7 @@ import bibliotheque.utilitaires.Utilitaire;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.choixListe;
 
@@ -133,12 +130,24 @@ public class Gestion {
             exRestiturion.getLloc().get(0).setDateRestitution(LocalDate.of(2024, 03, 31));
         }
         exRestiturion.modifierEtat("etat après location");
+        lloc.remove(exRestiturion);
     }
 
     private void gestLocations() {
-        int choix;
         //TODO ne lister que les exemplaires libres et les trier par matricule
-        choix = choixListe(lex);
+        List<Exemplaire> exLibre = new ArrayList<>();
+        for (Exemplaire e : lex) {
+            if (!e.enLocation()) {
+                exLibre.add(e);
+            }
+        }
+        Collections.sort(exLibre);
+        int choixE = choixListe(exLibre);
+        Exemplaire ex = exLibre.get(choixE - 1);
+        int choixL = choixListe(llect);
+        Lecteur lec = llect.get(choixL - 1);
+        lloc.add(new Location(lec, ex));
+        /*choix = choixListe(lex);
         if (lex.get(choix).enLocation()) {
             System.out.println("exemplaire en location");
             return;
@@ -146,7 +155,7 @@ public class Gestion {
         Exemplaire ex = lex.get(choix - 1);
         choix = choixListe(llect);
         Lecteur lec = llect.get(choix - 1);
-        lloc.add(new Location(lec, ex));
+        lloc.add(new Location(lec, ex));*/
     }
 
     private void gestLecteurs() {
