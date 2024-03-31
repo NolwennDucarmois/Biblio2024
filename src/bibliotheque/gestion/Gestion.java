@@ -210,6 +210,7 @@ public class Gestion {
         Exemplaire ex = new Exemplaire(mat, etat, louv.get(choix - 1));
         lex.add(ex);
         System.out.println("exemplaire créé");
+        Collections.sort(lrayon);
         choix = choixListe(lrayon);
         ex.setRayon(lrayon.get(choix - 1));
         //TODO attribuer un rayon ==> c'est fait  , nouveauté : les rayons sont triès par ordre de code
