@@ -2,6 +2,7 @@ package bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public abstract class Ouvrage {
@@ -13,9 +14,11 @@ public abstract class Ouvrage {
     protected String langue;
     protected String genre;
 
-    protected List<Auteur> lauteurs=new ArrayList<>();
+    //protected List<Auteur> lauteurs=new ArrayList<>();
+    protected HashSet<Auteur> lauteurs = new HashSet<>();
     //TODO remplacer par set
-    protected List<Exemplaire> lex = new ArrayList<>();
+    //protected List<Exemplaire> lex = new ArrayList<>();
+    protected HashSet<Exemplaire> lex = new HashSet<>();
     //TODO remplacer par set
 
     public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) {

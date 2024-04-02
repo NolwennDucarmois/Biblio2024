@@ -1,8 +1,6 @@
 package bibliotheque.metier;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static bibliotheque.metier.TypeOuvrage.LIVRE;
 
@@ -10,8 +8,9 @@ import static bibliotheque.metier.TypeOuvrage.LIVRE;
 public class Auteur implements Comparable<Auteur>{
     private  String nom,prenom;
     private String nationalite;
-    private List<Ouvrage> louvrage = new ArrayList<>();
+    //private List<Ouvrage> louvrage = new ArrayList<>();
     //TODO remplacer par set
+    private Set<Ouvrage> louvrage = new HashSet<>();
 
     public Auteur(String nom, String prenom, String nationalite) {
         this.nom = nom;
@@ -120,5 +119,4 @@ public class Auteur implements Comparable<Auteur>{
     public int compareTo(Auteur a) {
         return this.nom.compareTo(a.nom);
     }
-
 }

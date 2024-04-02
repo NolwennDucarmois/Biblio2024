@@ -1,14 +1,16 @@
 package bibliotheque.metier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class Rayon implements Comparable<Rayon>{
     private String codeRayon;
     private String genre;
-    private List<Exemplaire> lex = new ArrayList<>();
+    //private List<Exemplaire> lex = new ArrayList<>();
     //TODO remplacer par set
+    private HashSet<Exemplaire> lex = new HashSet<>();
 
     public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;
