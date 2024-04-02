@@ -2,6 +2,7 @@ package bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -124,12 +125,16 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesLoues(){
-        List<Exemplaire> lex = new ArrayList<>();
+        /*List<Exemplaire> lex = new ArrayList<>();
         for(Location loc : lloc){
-
             lex.add(loc.getExemplaire());
             //TODO empêcher doublon si exemplaire loué plusieurs fois par même lecteur
+        }*/
+        HashSet<Exemplaire> lexH = new HashSet<>();
+        for (Location loc : lloc) {
+            lexH.add(loc.getExemplaire());
         }
+        List<Exemplaire> lex = new ArrayList<>(lexH);
        return lex;
     }
 }
