@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public abstract class Ouvrage {
+public abstract class Ouvrage implements Comparable<Ouvrage>{
     protected String titre;
     protected int ageMin;
     protected LocalDate dateParution;
@@ -148,5 +148,10 @@ public abstract class Ouvrage {
             if(ex.enLocation()==enLocation) lex2.add(ex);
         }
         return lex2;
+    }
+
+    @Override
+    public int compareTo(Ouvrage o) {
+        return this.titre.compareTo(o.getTitre());
     }
 }

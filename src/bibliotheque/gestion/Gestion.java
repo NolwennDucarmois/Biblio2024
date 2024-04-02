@@ -150,6 +150,10 @@ public class Gestion {
         }
         Collections.sort(exLibre);
         int choixE = choixListe(exLibre);
+        if (exLibre.get(choixE-1).enLocation()) {
+            System.out.println("exemplaire en location");
+            return;
+        }
         Exemplaire ex = exLibre.get(choixE - 1);
         int choixL = choixListe(llect);
         Lecteur lec = llect.get(choixL - 1);
@@ -340,11 +344,20 @@ public class Gestion {
         Auteur a = new Auteur(nom, prenom, nat);
         laut.add(a);
         System.out.println("écrivain créé");
-        int choix = choixListe(louv);
-        a.addOuvrage(louv.get(choix - 1));
         //TODO attribuer ouvrages par boucle
         // les ouvrages sont triés par ordre de titre
         // ne pas proposer un ouvrage déjà présent dans la liste des ouvrages de cet auteur
+        do {
+            List<Ouvrage> ouvrages = new ArrayList<>();
+            for(Ouvrage o : louv){
+                if(!a.getLouvrage().contains(o)){
+                    ouvrages.add(o);
+                }
+            }
+            Collections.sort(ouvrages);
+            int choix = choixListe(ouvrages);
+            a.addOuvrage(ouvrages.get(choix - 1));
+        }while (true);
     }
 
     public static void main(String[] args) {
