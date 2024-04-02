@@ -87,19 +87,19 @@ public abstract class Ouvrage {
         this.genre = genre;
     }
 
-    public List<Auteur> getLauteurs() {
+    public HashSet<Auteur> getLauteurs() {
         return lauteurs;
     }
 
-    public void setLauteurs(List<Auteur> lauteurs) {
+    public void setLauteurs(HashSet<Auteur> lauteurs) {
         this.lauteurs = lauteurs;
     }
 
-    public List<Exemplaire> getLex() {
+    public HashSet<Exemplaire> getLex() {
         return lex;
     }
 
-    public void setLex(List<Exemplaire> lex) {
+    public void setLex(HashSet<Exemplaire> lex) {
         this.lex = lex;
     }
 
@@ -138,12 +138,12 @@ public abstract class Ouvrage {
         lex.remove(e);
         e.setOuvrage(null);
     }
-    public List<Exemplaire>listerExemplaires(){
+    public HashSet<Exemplaire>listerExemplaires(){
         return lex;
     }
 
-    public List<Exemplaire>listerExemplaires(boolean enLocation){
-        List<Exemplaire> lex2 = new ArrayList<>();
+    public HashSet<Exemplaire>listerExemplaires(boolean enLocation){
+        HashSet<Exemplaire> lex2 = new HashSet<>();
         for(Exemplaire ex : lex){
             if(ex.enLocation()==enLocation) lex2.add(ex);
         }

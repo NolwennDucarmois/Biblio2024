@@ -62,15 +62,15 @@ public class Rayon implements Comparable<Rayon>{
         this.genre = genre;
     }
 
-    public List<Exemplaire> getLex() {
+    public HashSet<Exemplaire> getLex() {
         return lex;
     }
 
-    public void setLex(List<Exemplaire> lex) {
+    public void setLex(HashSet<Exemplaire> lex) {
         this.lex = lex;
     }
 
-    public List<Exemplaire>listerExemplaires(){
+    public HashSet<Exemplaire>listerExemplaires(){
         return lex;
     }
 

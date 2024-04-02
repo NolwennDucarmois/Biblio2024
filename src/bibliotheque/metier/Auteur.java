@@ -10,7 +10,7 @@ public class Auteur implements Comparable<Auteur>{
     private String nationalite;
     //private List<Ouvrage> louvrage = new ArrayList<>();
     //TODO remplacer par set
-    private Set<Ouvrage> louvrage = new HashSet<>();
+    private HashSet<Ouvrage> louvrage = new HashSet<>();
 
     public Auteur(String nom, String prenom, String nationalite) {
         this.nom = nom;
@@ -43,11 +43,11 @@ public class Auteur implements Comparable<Auteur>{
         this.nationalite = nationalite;
     }
 
-    public boolean getLouvrage() {
+    public HashSet<Ouvrage> getLouvrage() {
         return louvrage;
     }
 
-    public void setLouvrage(List<Ouvrage> louvrage) {
+    public void setLouvrage(HashSet<Ouvrage> louvrage) {
         this.louvrage = louvrage;
     }
 
@@ -85,20 +85,20 @@ public class Auteur implements Comparable<Auteur>{
         o.getLauteurs().remove(this);
     }
 
-    public List<Ouvrage> listerOuvrages(){
+    public HashSet<Ouvrage> listerOuvrages(){
 
         return louvrage;
     }
 
-    public List<Ouvrage> listerOuvrages(TypeOuvrage to){
-        List<Ouvrage> lot = new ArrayList<>();
+    public HashSet<Ouvrage> listerOuvrages(TypeOuvrage to){
+        HashSet<Ouvrage> lot = new HashSet<>();
         for(Ouvrage o : louvrage){
             if(o.getTo().equals(to)) lot.add(o);
         }
         return lot;
     }
-    public List<Livre> listerLivres(TypeLivre tl){
-        List<Livre>ll = new ArrayList<>();
+    public HashSet<Livre> listerLivres(TypeLivre tl){
+        HashSet<Livre>ll = new HashSet<>();
         for(Ouvrage o : louvrage){
             if(o.getTo().equals(LIVRE)) {
                 Livre l = (Livre)o;
@@ -107,8 +107,8 @@ public class Auteur implements Comparable<Auteur>{
         }
         return ll;
     }
-    public List<Ouvrage> listerOuvrages(String genre){
-        List<Ouvrage> lot = new ArrayList<>();
+    public HashSet<Ouvrage> listerOuvrages(String genre){
+        HashSet<Ouvrage> lot = new HashSet<>();
         for(Ouvrage o : louvrage){
             if(o.getGenre().equals(genre)) lot.add(o);
         }
