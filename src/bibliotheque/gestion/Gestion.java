@@ -124,7 +124,7 @@ public class Gestion {
                 exLoc.add(e);
             }
         }
-        if(exLoc.isEmpty()){
+        if (exLoc.isEmpty()) {
             System.out.println("Aucun exemplaire en location");
             return;
         }
@@ -133,7 +133,7 @@ public class Gestion {
         exRestiturion.getLloc().get(0).enregistrerRetour();
         System.out.println("Voulez-vous changer l'état de l'exemplaire ? (o-n)");
         String rep = sc.next();
-        if(rep.equals("o") || rep.equals("O")){
+        if (rep.equals("o") || rep.equals("O")) {
             System.out.println("Entrez le nouvel état ? ");
             String etat = sc.nextLine();
             exRestiturion.modifierEtat(etat);
@@ -150,7 +150,7 @@ public class Gestion {
         }
         Collections.sort(exLibre);
         int choixE = choixListe(exLibre);
-        if (exLibre.get(choixE-1).enLocation()) {
+        if (exLibre.get(choixE - 1).enLocation()) {
             System.out.println("exemplaire en location");
             return;
         }
@@ -323,15 +323,15 @@ public class Gestion {
         // ne pas proposer un auteur déjà présent dans la liste des auteurs de cet ouvrage
         do {
             List<Auteur> auteurs = new ArrayList<>();
-            for(Auteur a : laut){
-                if(!o.getLauteurs().equals(a)){
+            for (Auteur a : laut) {
+                if (!o.getLauteurs().equals(a)) {
                     auteurs.add(a);
                 }
             }
             Collections.sort(auteurs);
             choix = choixListe(laut);
             o.addAuteur(laut.get(choix - 1));
-        }while (true);
+        } while (true);
     }
 
     private void gestAuteurs() {
@@ -349,15 +349,15 @@ public class Gestion {
         // ne pas proposer un ouvrage déjà présent dans la liste des ouvrages de cet auteur
         do {
             List<Ouvrage> ouvrages = new ArrayList<>();
-            for(Ouvrage o : louv){
-                if(!a.getLouvrage().contains(o)){
+            for (Ouvrage o : louv) {
+                if (!a.getLouvrage().contains(o)) {
                     ouvrages.add(o);
                 }
             }
             Collections.sort(ouvrages);
             int choix = choixListe(ouvrages);
             a.addOuvrage(ouvrages.get(choix - 1));
-        }while (true);
+        } while (true);
     }
 
     public static void main(String[] args) {
