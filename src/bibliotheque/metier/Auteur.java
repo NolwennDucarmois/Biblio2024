@@ -7,7 +7,7 @@ import java.util.Objects;
 import static bibliotheque.metier.TypeOuvrage.LIVRE;
 
 
-public class Auteur {
+public class Auteur implements Comparable<Auteur>{
     private  String nom,prenom;
     private String nationalite;
     private List<Ouvrage> louvrage = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Auteur {
         this.nationalite = nationalite;
     }
 
-    public List<Ouvrage> getLouvrage() {
+    public boolean getLouvrage() {
         return louvrage;
     }
 
@@ -115,4 +115,10 @@ public class Auteur {
         }
         return lot;
     }
+
+    @Override
+    public int compareTo(Auteur a) {
+        return this.nom.compareTo(a.nom);
+    }
+
 }

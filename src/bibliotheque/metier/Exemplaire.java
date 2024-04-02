@@ -85,7 +85,6 @@ public class Exemplaire implements Comparable<Exemplaire> {
     public void setLloc(List<Location> lloc) {
         this.lloc = lloc;
     }
-
     @Override
     public String toString() {
         return "Exemplaire{" +

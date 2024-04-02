@@ -126,9 +126,7 @@ public class Gestion {
         }
         int choix = Utilitaire.choixListe(exLoc);
         Exemplaire exRestiturion = exLoc.get(choix - 1);
-        if (!exRestiturion.getLloc().isEmpty()) {
-            exRestiturion.getLloc().get(0).setDateRestitution(LocalDate.of(2024, 03, 31));
-        }
+        exRestiturion.getLloc().get(0).enregistrerRetour();
         exRestiturion.modifierEtat("etat après location");
         lloc.remove(exRestiturion);
     }
@@ -191,12 +189,18 @@ public class Gestion {
         Rayon r = new Rayon(code, genre);
         System.out.println("rayon créé");
         lrayon.add(r);
-        int choix = choixListe(lex);
-        r.addExemplaire(lex.get(choix - 1));
         //TODO attribuer par une boucle plusieurs exemplaires, les exemplaires sont triés par ordre de titre de l'ouvrage ,
         //  ne proposer que les exemplaires qui ne sont pas dans déjà présents dans ce rayon et qui ne sont dans aucun autre rayon
         do {
-
+            List<Exemplaire> exemplaire = new ArrayList<>();
+            for (Exemplaire e : lex) {
+                if (!e.getRayon().equals(r) && e.getRayon() == null) {
+                    exemplaire.add(e);
+                }
+            }
+            Collections.sort(exemplaire);
+            int choix = choixListe(exemplaire);
+            r.addExemplaire(exemplaire.get(choix - 1));
         } while (true);
     }
 
@@ -302,10 +306,19 @@ public class Gestion {
         o = lof.get(choix-1).create();*/
         louv.add(o);
         System.out.println("ouvrage créé");
-        choix = choixListe(laut);
-        o.addAuteur(laut.get(choix - 1));
         //TODO attribuer auteurs par boucle, les auteur sont triés par ordre de nom et prénom,
         // ne pas proposer un auteur déjà présent dans la liste des auteurs de cet ouvrage
+        do {
+            List<Auteur> auteurs = new ArrayList<>();
+            for(Auteur a : laut){
+                if(!o.getLauteurs().equals(a)){
+                    auteurs.add(a);
+                }
+            }
+            Collections.sort(auteurs);
+            choix = choixListe(laut);
+            o.addAuteur(laut.get(choix - 1));
+        }while (true);
     }
 
     private void gestAuteurs() {
