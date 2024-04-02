@@ -126,6 +126,7 @@ public class Lecteur {
     public List<Exemplaire> listerExemplairesLoues(){
         List<Exemplaire> lex = new ArrayList<>();
         for(Location loc : lloc){
+
             lex.add(loc.getExemplaire());
             //TODO empêcher doublon si exemplaire loué plusieurs fois par même lecteur
         }

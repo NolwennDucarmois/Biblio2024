@@ -124,11 +124,20 @@ public class Gestion {
                 exLoc.add(e);
             }
         }
+        if(exLoc.isEmpty()){
+            System.out.println("Aucun exemplaire en location");
+            return;
+        }
         int choix = Utilitaire.choixListe(exLoc);
         Exemplaire exRestiturion = exLoc.get(choix - 1);
         exRestiturion.getLloc().get(0).enregistrerRetour();
-        exRestiturion.modifierEtat("etat après location");
-        lloc.remove(exRestiturion);
+        System.out.println("Voulez-vous changer l'état de l'exemplaire ? (o-n)");
+        String rep = sc.next();
+        if(rep.equals("o") || rep.equals("O")){
+            System.out.println("Entrez le nouvel état ? ");
+            String etat = sc.nextLine();
+            exRestiturion.modifierEtat(etat);
+        }
     }
 
     private void gestLocations() {
