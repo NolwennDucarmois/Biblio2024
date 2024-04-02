@@ -129,14 +129,14 @@ public class Gestion {
             return;
         }
         int choix = Utilitaire.choixListe(exLoc);
-        Exemplaire exRestiturion = exLoc.get(choix - 1);
-        exRestiturion.getLloc().get(0).enregistrerRetour();
+        Exemplaire exRestitution = exLoc.get(choix - 1);
+        exRestitution.getLloc().get(0).enregistrerRetour();
         System.out.println("Voulez-vous changer l'état de l'exemplaire ? (o-n)");
         String rep = sc.next();
         if (rep.equals("o") || rep.equals("O")) {
             System.out.println("Entrez le nouvel état ? ");
             String etat = sc.nextLine();
-            exRestiturion.modifierEtat(etat);
+            exRestitution.modifierEtat(etat);
         }
     }
 
@@ -209,7 +209,7 @@ public class Gestion {
             for (Exemplaire e : lex) {
                 if (!e.getRayon().equals(r) && e.getRayon() == null) {
                     exemplaire.add(e);
-                }
+                } else return;
             }
             Collections.sort(exemplaire);
             int choix = choixListe(exemplaire);
@@ -324,7 +324,7 @@ public class Gestion {
         do {
             List<Auteur> auteurs = new ArrayList<>();
             for (Auteur a : laut) {
-                if (!o.getLauteurs().equals(a)) {
+                if (!o.getLauteurs().contains(a)) {
                     auteurs.add(a);
                 }
             }
@@ -352,7 +352,7 @@ public class Gestion {
             for (Ouvrage o : louv) {
                 if (!a.getLouvrage().contains(o)) {
                     ouvrages.add(o);
-                }
+                } else return;
             }
             Collections.sort(ouvrages);
             int choix = choixListe(ouvrages);
