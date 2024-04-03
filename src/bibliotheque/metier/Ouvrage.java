@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public abstract class Ouvrage implements Comparable<Ouvrage>{
+public abstract class Ouvrage {
     protected String titre;
     protected int ageMin;
     protected LocalDate dateParution;
@@ -14,12 +15,10 @@ public abstract class Ouvrage implements Comparable<Ouvrage>{
     protected String langue;
     protected String genre;
 
-    //protected List<Auteur> lauteurs=new ArrayList<>();
-    protected HashSet<Auteur> lauteurs = new HashSet<>();
-    //TODO remplacer par set
-    //protected List<Exemplaire> lex = new ArrayList<>();
-    protected HashSet<Exemplaire> lex = new HashSet<>();
-    //TODO remplacer par set
+    protected Set<Auteur> lauteurs=new HashSet<>();
+
+    protected Set<Exemplaire> lex = new HashSet<>();
+
 
     public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) {
         this.titre = titre;
@@ -87,19 +86,19 @@ public abstract class Ouvrage implements Comparable<Ouvrage>{
         this.genre = genre;
     }
 
-    public HashSet<Auteur> getLauteurs() {
+    public Set<Auteur> getLauteurs() {
         return lauteurs;
     }
 
-    public void setLauteurs(HashSet<Auteur> lauteurs) {
+    public void setLauteurs(Set<Auteur> lauteurs) {
         this.lauteurs = lauteurs;
     }
 
-    public HashSet<Exemplaire> getLex() {
+    public Set<Exemplaire> getLex() {
         return lex;
     }
 
-    public void setLex(HashSet<Exemplaire> lex) {
+    public void setLex(Set<Exemplaire> lex) {
         this.lex = lex;
     }
 
@@ -138,20 +137,15 @@ public abstract class Ouvrage implements Comparable<Ouvrage>{
         lex.remove(e);
         e.setOuvrage(null);
     }
-    public HashSet<Exemplaire>listerExemplaires(){
+    public Set<Exemplaire>listerExemplaires(){
         return lex;
     }
 
-    public HashSet<Exemplaire>listerExemplaires(boolean enLocation){
-        HashSet<Exemplaire> lex2 = new HashSet<>();
+    public List<Exemplaire>listerExemplaires(boolean enLocation){
+        List<Exemplaire> lex2 = new ArrayList<>();
         for(Exemplaire ex : lex){
             if(ex.enLocation()==enLocation) lex2.add(ex);
         }
         return lex2;
-    }
-
-    @Override
-    public int compareTo(Ouvrage o) {
-        return this.titre.compareTo(o.getTitre());
     }
 }
