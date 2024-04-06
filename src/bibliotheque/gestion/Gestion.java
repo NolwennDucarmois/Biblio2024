@@ -118,6 +118,19 @@ public class Gestion {
 
     private void gestRestitution() {
         //TODO lister exemplaires en location , choisir l'un d'entre eux, enregistrer sa restitution et éventuellement changer état
+        List<Exemplaire> liste = new ArrayList<>();
+        for (Exemplaire e : lex) {
+            if (e.enLocation()) {
+                liste.add(e);
+            }
+        }
+        int choix = choixListe(liste);
+        if (choix == 0) {
+            return;
+        }
+        Exemplaire exRestitution = lex.get(choix - 1);
+        locations.remove(exRestitution);
+        exRestitution.modifierEtat("en location");
     }
 
     private void gestLocations() {
@@ -135,7 +148,7 @@ public class Gestion {
         if (choix == 0) return;
         Lecteur lec = llect.get(choix - 1);
         //lloc.add(new Location(lec, ex));
-        locations.put(ex,lec);
+        locations.put(ex, lec);
     }
 
     private void gestLecteurs() {
