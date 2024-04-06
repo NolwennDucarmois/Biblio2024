@@ -20,7 +20,7 @@ public class Gestion {
     private List<Ouvrage> louv = new ArrayList<>();
     private List<Exemplaire> lex = new ArrayList<>();
     private List<Rayon> lrayon = new ArrayList<>();
-    private static final Map<Exemplaire, Lecteur> locations = new HashMap<>();
+    public static final Map<Exemplaire, Lecteur> locations = new HashMap<>();
 
 
     public void populate() {
@@ -118,6 +118,7 @@ public class Gestion {
 
     private void gestRestitution() {
         //TODO lister exemplaires en location , choisir l'un d'entre eux, enregistrer sa restitution et éventuellement changer état
+        Set<Exemplaire> cles = locations.keySet();
         List<Exemplaire> liste = new ArrayList<>();
         for (Exemplaire e : lex) {
             if (e.enLocation()) {
@@ -128,7 +129,7 @@ public class Gestion {
         if (choix == 0) {
             return;
         }
-        Exemplaire exRestitution = lex.get(choix - 1);
+        Exemplaire exRestitution = liste.get(choix - 1);
         locations.remove(exRestitution);
         exRestitution.modifierEtat("en location");
     }
