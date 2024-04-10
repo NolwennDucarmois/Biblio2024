@@ -1,8 +1,6 @@
 package bibliotheque.metier;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Lecteur {
@@ -12,6 +10,7 @@ public class Lecteur {
     private String adresse;
     private String mail;
     private String tel;
+
 
     public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) {
         this.numlecteur = numlecteur;
@@ -79,7 +78,7 @@ public class Lecteur {
         this.tel = tel;
     }
 
-    @Override
+        @Override
     public String toString() {
         return "Lecteur{" +
                 "numlecteur=" + numlecteur +

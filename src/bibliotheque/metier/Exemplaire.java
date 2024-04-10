@@ -1,10 +1,8 @@
 package bibliotheque.metier;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Objects;
 
-import static bibliotheque.gestion.Gestion.locations;
+import static bibliotheque.gestion.GestionOld.LOCATIONS;
 
 public class Exemplaire {
 
@@ -13,12 +11,15 @@ public class Exemplaire {
 
     private Ouvrage ouvrage;
     private Rayon rayon;
+
     private String etat;
 
-    public Exemplaire(String matricule, String descriptionEtat, Ouvrage ouvrage) {
+
+    public Exemplaire(String matricule, String descriptionEtat,Ouvrage ouvrage){
         this.matricule = matricule;
-        this.descriptionEtat = descriptionEtat;
+        this.descriptionEtat=descriptionEtat;
         this.ouvrage = ouvrage;
+
         this.ouvrage.getLex().add(this);
     }
 
@@ -56,7 +57,7 @@ public class Exemplaire {
     }
 
     public void setOuvrage(Ouvrage ouvrage) {
-        if (this.ouvrage != null) this.ouvrage.getLex().remove(this);
+        if(this.ouvrage!=null) this.ouvrage.getLex().remove(this);
         this.ouvrage = ouvrage;
         this.ouvrage.getLex().add(this);
     }
@@ -66,8 +67,8 @@ public class Exemplaire {
     }
 
     public void setRayon(Rayon rayon) {
-        if (this.rayon != null) this.rayon.getLex().remove(this);
-        this.rayon = rayon;
+        if(this.rayon!=null) this.rayon.getLex().remove(this);
+        this.rayon=rayon;
         this.rayon.getLex().add(this);
     }
 
@@ -81,42 +82,22 @@ public class Exemplaire {
                 '}';
     }
 
-    public void modifierEtat(String etat) {
+    public void modifierEtat(String etat){
         setDescriptionEtat(etat);
     }
 
-    public Lecteur lecteurActuel() {
-        // pas bon
-        if (enLocation()) {
-            return locations.get(locations.size() - 1);
-        }
+    public Lecteur lecteurActuel(){
+        if(enLocation()) return LOCATIONS.get(this);
         return null;
     }
 
-    public void envoiMailLecteurActuel(Mail mail) {
-        if (lecteurActuel() != null) System.out.println("envoi de " + mail + " à " + lecteurActuel().getMail());
+    public void envoiMailLecteurActuel(Mail mail){
+        if(lecteurActuel()!=null) System.out.println("envoi de "+mail+ " à "+lecteurActuel().getMail());
         else System.out.println("aucune location en cours");
     }
 
-    public void envoiMailLecteurs(Mail mail) {
-        Collection<Lecteur> ll = locations.values();
-        if (ll.isEmpty()) {
-            System.out.println("aucun lecteur enregistré");
-        } else {
-            for (Lecteur l : ll) {
-                System.out.println("envoi de " + mail + " à " + l.getMail());
-            }
-        }
-    }
 
-    public boolean enLocation() {
-        for (Map.Entry<Exemplaire, Lecteur> hm : locations.entrySet()) {
-            Exemplaire ex = hm.getKey();
-            Lecteur lect = hm.getValue();
-            if (ex.equals(this) && lect != null) {
-                return true;
-            }
-        }
-        return false;
+    public boolean enLocation(){
+        return LOCATIONS.get(this) !=null ;
     }
 }
