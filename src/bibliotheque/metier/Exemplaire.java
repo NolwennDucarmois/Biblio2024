@@ -22,6 +22,10 @@ public class Exemplaire {
 
         this.ouvrage.getLex().add(this);
     }
+    public Exemplaire(String matricule, String descriptionEtat){
+        this.matricule = matricule;
+        this.descriptionEtat=descriptionEtat;
+    }
 
     @Override
     public boolean equals(Object o) {
