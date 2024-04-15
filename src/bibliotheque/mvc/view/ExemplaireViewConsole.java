@@ -41,9 +41,9 @@ public class ExemplaireViewConsole extends AbstractViewExemplaire {
         Exemplaire ex;
         do {
             try {
-                System.out.println("matricule ");
+                System.out.println("matricule : ");
                 String matricule = sc.nextLine();
-                System.out.println("descriptionEtat ");
+                System.out.println("descriptionEtat : ");
                 String descriptionEtat = sc.nextLine();
                 ex = new Exemplaire(matricule, descriptionEtat);
                 break;
@@ -67,9 +67,9 @@ public class ExemplaireViewConsole extends AbstractViewExemplaire {
 
     private void rechercher() {
         try {
-            System.out.println("matricule ");
+            System.out.println("matricule : ");
             String matricule = sc.nextLine();
-            System.out.println("descriptionEtat ");
+            System.out.println("descriptionEtat : ");
             String descriptionEtat = sc.nextLine();
             Exemplaire rech = new Exemplaire(matricule, descriptionEtat);
             Exemplaire ex = exemplaireController.search(rech);
