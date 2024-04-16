@@ -147,6 +147,6 @@ public class LecteurViewConsole extends AbstractViewLecteur {
 
     @Override
     public void affList(List le) {
-        affList(le);
+        affListe(le);
     }
 }

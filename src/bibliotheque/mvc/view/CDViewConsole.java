@@ -142,7 +142,7 @@ public class CDViewConsole extends AbstractViewCD {
 
     @Override
     public void affList(List lcd) {
-        affList(lcd);
+        affListe(lcd);
     }
 
     private void affMsg(String msg) {

@@ -154,6 +154,6 @@ public class LivreViewConsole extends AbstractViewLivre {
 
     @Override
     public void affList(List li) {
-        affList(li);
+        affListe(li);
     }
 }
