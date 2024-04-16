@@ -26,12 +26,12 @@ public class LecteurController {
         return nle;
     }
 
-    public boolean remove(Lecteur le) {
-        return model.remove(le);
+    public boolean remove(Lecteur lec) {
+        return model.remove(lec);
     }
 
-    public Lecteur update(Lecteur le) {
-        return model.update(le);
+    public Lecteur update(Lecteur lec) {
+        return model.update(lec);
     }
 
     public Lecteur search(Lecteur rech) {
