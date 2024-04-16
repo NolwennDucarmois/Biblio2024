@@ -1,7 +1,6 @@
 package bibliotheque.mvc.view;
 
 
-import bibliotheque.metier.Auteur;
 import bibliotheque.metier.DVD;
 
 import java.time.LocalDate;
