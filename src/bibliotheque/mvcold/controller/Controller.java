@@ -15,22 +15,26 @@ public class Controller<T> {
         this.view.setController(this);
     }
 
-    public List<T> getAll(){
+    public List<T> getAll() {
         List<T> l = model.getAll();
         return l;
     }
 
-    public T add( T elt) {
+    public T add(T elt) {
         T nelt = model.add(elt);
         return nelt;
     }
+
     public boolean remove(T elt) {
         return model.remove(elt);
     }
-    public T update(T elt) {  return model.update(elt); }
+
+    public T update(T elt) {
+        return model.update(elt);
+    }
 
     public T search(T rech) {
-        return  model.read(rech);
+        return model.read(rech);
     }
 
 }
