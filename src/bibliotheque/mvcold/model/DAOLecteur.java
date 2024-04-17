@@ -5,19 +5,19 @@ import bibliotheque.mvc.observer.Subject;
 
 import java.util.List;
 
-public abstract class DAOLecteur extends Subject {
+public abstract class DAOLecteur extends DAO<Lecteur> {
 
-    public abstract Lecteur add( Lecteur elt) ;
+    public abstract Lecteur add(Lecteur elt);
 
-    public abstract boolean remove( Lecteur elt) ;
+    public abstract boolean remove(Lecteur elt);
 
-    public abstract Lecteur update (Lecteur elt) ;
+    public abstract Lecteur update(Lecteur elt);
 
-    public abstract Lecteur read(Lecteur rech) ;
+    public abstract Lecteur read(Lecteur rech);
 
-    public abstract List<Lecteur> getAll() ;
+    public abstract List<Lecteur> getAll();
 
-    public List<Lecteur> getNotification(){
+    public List<Lecteur> getNotification() {
         return getAll();
     }
 }

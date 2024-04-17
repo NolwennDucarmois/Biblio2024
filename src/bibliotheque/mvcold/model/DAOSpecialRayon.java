@@ -6,5 +6,5 @@ import bibliotheque.metier.Rayon;
 import java.util.List;
 
 public interface DAOSpecialRayon {
-    public List<Exemplaire> listerExemplaires(Rayon r) ;
+    public List<Exemplaire> listerExemplaires(Rayon r);
 }
