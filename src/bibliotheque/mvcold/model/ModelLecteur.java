@@ -5,13 +5,13 @@ import bibliotheque.metier.Lecteur;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelLecteur extends DAOLecteur {
+public class ModelLecteur extends DAO<Lecteur> {
     private List<Lecteur> ldatas = new ArrayList<>();
 
 
     @Override
-    public Lecteur add( Lecteur elt) {
-        boolean present =ldatas.contains(elt);
+    public Lecteur add(Lecteur elt) {
+        boolean present = ldatas.contains(elt);
         if (!present) {
             ldatas.add(elt);
             notifyObservers();
@@ -20,7 +20,7 @@ public class ModelLecteur extends DAOLecteur {
     }
 
     @Override
-    public boolean remove( Lecteur elt) {
+    public boolean remove(Lecteur elt) {
         boolean ok = ldatas.remove(elt);
         notifyObservers();
         return ok;
@@ -38,7 +38,7 @@ public class ModelLecteur extends DAOLecteur {
     @Override
     public Lecteur read(Lecteur rech) {
         int p = ldatas.indexOf(rech);
-        if(p<0) return null;
+        if (p < 0) return null;
         return ldatas.get(p);
     }
 
