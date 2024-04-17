@@ -19,7 +19,7 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
     @Override
     public void menu() {
         update(controller.getAll());
-        List options = Arrays.asList("ajouter", "retirer", "rechercher","modifier","fin");
+        List options = Arrays.asList("ajouter", "retirer", "rechercher", "modifier", "fin");
         do {
             int ch = choixListe(options);
 
@@ -43,10 +43,10 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
     }
 
     private void retirer() {
-        int nl = choixElt(la)-1;
+        int nl = choixElt(la) - 1;
         Auteur a = la.get(nl);
         boolean ok = controller.remove(a);
-        if(ok) affMsg("auteur effacé");
+        if (ok) affMsg("auteur effacé");
         else affMsg("auteur non effacé");
     }
 
@@ -65,13 +65,13 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
             String nat = sc.nextLine();
             Auteur rech = new Auteur(nom, prenom, nat);
             Auteur a = controller.search(rech);
-            if(a==null) affMsg("auteur inconnu");
+            if (a == null) affMsg("auteur inconnu");
             else {
                 affMsg(a.toString());
                 special(a);
             }
-        }catch(Exception e){
-            System.out.println("erreur : "+e);
+        } catch (Exception e) {
+            System.out.println("erreur : " + e);
         }
 
     }
@@ -79,8 +79,8 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
 
     public void modifier() {
         int choix = choixElt(la);
-        Auteur a = la.get(choix-1);
-         do {
+        Auteur a = la.get(choix - 1);
+        do {
             try {
                 String nom = modifyIfNotBlank("nom", a.getNom());
                 String prenom = modifyIfNotBlank("prénom", a.getPrenom());
@@ -92,9 +92,9 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
             } catch (Exception e) {
                 System.out.println("erreur :" + e);
             }
-        }while(true);
+        } while (true);
         controller.update(a);
-   }
+    }
 
 
     public void ajouter() {
@@ -110,15 +110,15 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
                 a = new Auteur(nom, prenom, nat);
                 break;
             } catch (Exception e) {
-                System.out.println("une erreur est survenue : "+e.getMessage());
+                System.out.println("une erreur est survenue : " + e.getMessage());
             }
-        }while(true);
+        } while (true);
         controller.add(a);
     }
 
     public void special(Auteur a) {
 
-        List options = Arrays.asList("lister ouvrages", "lister livres", "lister par genre","fin");
+        List options = Arrays.asList("lister ouvrages", "lister livres", "lister par genre", "fin");
         do {
             int ch = choixListe(options);
 
@@ -133,7 +133,8 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
                 case 3:
                     listerGenre(a);
                     break;
-                  case 4 :return;
+                case 4:
+                    return;
             }
         } while (true);
 
@@ -143,20 +144,20 @@ public class AuteurViewConsole extends AbstractView<Auteur> {
     public void listerGenre(Auteur a) {
         System.out.println("genre :");
         String genre = sc.nextLine();
-        affListe(new ArrayList(((ControllerSpecialAuteur)controller).listerOuvrages(a,genre)));
+        affListe(new ArrayList(((ControllerSpecialAuteur) controller).listerOuvrages(a, genre)));
     }
 
 
-    public void listerOuvrages(Auteur a){
-        affList(new ArrayList(((ControllerSpecialAuteur)controller).listerOuvrages(a)));
+    public void listerOuvrages(Auteur a) {
+        affList(new ArrayList(((ControllerSpecialAuteur) controller).listerOuvrages(a)));
     }
 
 
-    public void listerLivres(Auteur a){
+    public void listerLivres(Auteur a) {
         TypeLivre[] tlv = TypeLivre.values();
         int ch2 = choixListe(List.of(tlv));
-        TypeLivre tl = tlv[ch2-1];
-        affList(new ArrayList(((ControllerSpecialAuteur)controller).listerLivre(a,tl)));
+        TypeLivre tl = tlv[ch2 - 1];
+        affList(new ArrayList(((ControllerSpecialAuteur) controller).listerLivre(a, tl)));
     }
 
     @Override

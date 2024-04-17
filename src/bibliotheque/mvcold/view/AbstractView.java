@@ -6,7 +6,7 @@ import bibliotheque.mvcold.controller.Controller;
 import java.util.List;
 
 
-public abstract  class AbstractView<T> implements Observer {
+public abstract class AbstractView<T> implements Observer {
 
     protected Controller<T> controller;
     protected List<T> la;
@@ -19,9 +19,10 @@ public abstract  class AbstractView<T> implements Observer {
 
     public abstract void affList(List la);
 
-    public List<T> getAll(){
+    public List<T> getAll() {
         return la;
     }
+
     @Override
     public void update(List la) {
         this.la = la;
