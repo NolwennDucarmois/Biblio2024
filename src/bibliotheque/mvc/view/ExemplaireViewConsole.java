@@ -100,14 +100,14 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
                 System.out.println("description ");
                 String descr = sc.nextLine();
                 System.out.println("ouvrage : ");
-                List<Ouvrage> lo = GestionMVC.ov.getAll();
-                lo.sort((o1, o2) -> o1.getTitre().compareTo(o2.getTitre()));
+                List<Ouvrage> lo = GestionMVC.ov.getAll((o1, o2) -> o1.getTitre().compareTo(o2.getTitre()));
+                //lo.sort((o1, o2) -> o1.getTitre().compareTo(o2.getTitre()));
                 //TODO présenter les ouvrages par ordre de titre ==> lambda
                 int ch = choixListe(lo);
                 a = new Exemplaire(mat, descr,lo.get(ch-1));
                 System.out.println("rayon");
-                List<Rayon> lr = GestionMVC.rv.getAll();
-                lr.sort((o1, o2) -> o1.getCodeRayon().compareTo(o2.getCodeRayon()));
+                List<Rayon> lr = GestionMVC.rv.getAll((o1, o2) -> o1.getCodeRayon().compareTo(o2.getCodeRayon()));
+                //lr.sort((o1, o2) -> o1.getCodeRayon().compareTo(o2.getCodeRayon()));
                 //TODO présenter les rayons par ordre de code ==> lambda
                 ch= choixListe(lr);
                 a.setRayon(lr.get(ch-1));
@@ -156,13 +156,8 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
    }
 
     private void louer(Exemplaire a) {
-        List<Lecteur> llec= lv.getAll();
-        llec.sort(new Comparator<Lecteur>() {
-            @Override
-            public int compare(Lecteur o1, Lecteur o2) {
-                return o1.getNumlecteur()-o2.getNumlecteur();
-            }
-        });
+        List<Lecteur> llec= lv.getAll((o1, o2) -> o1.getNumlecteur()-o2.getNumlecteur());
+        //llec.sort((o1, o2) -> o1.getNumlecteur()-o2.getNumlecteur());
         int ch = choixListe(llec);
         LOCATIONS.put(a,llec.get(ch-1));
     }
