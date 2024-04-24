@@ -1,6 +1,8 @@
 package bibliotheque.metier;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import static bibliotheque.metier.TypeOuvrage.LIVRE;
 
@@ -91,26 +93,19 @@ public class Auteur {
 
     public List<Ouvrage> listerOuvrages(TypeOuvrage to){
         List<Ouvrage> lot = new ArrayList<>();
-        for(Ouvrage o : louvrage){
-            if(o.getTo().equals(to)) lot.add(o);
-        }
+        Predicate<Ouvrage> pr = o-> o.getTo().equals(to);
+        Consumer<Ouvrage> cs = l->lot.add(l);
+        louvrage.stream().filter(pr).forEach(cs);
         return lot;
     }
     public List<Livre> listerLivres(TypeLivre tl){
         List<Livre>ll = new ArrayList<>();
-        for(Ouvrage o : louvrage){
-            if(o.getTo().equals(LIVRE)) {
-                Livre l = (Livre)o;
-                if(l.getTl().equals(tl)) ll.add(l);
-            }
-        }
+        louvrage.stream().filter(o->o.getTo().equals(LIVRE)).filter(l->((Livre)l).getTl().equals(tl)).forEach(l->ll.add((Livre) l));
         return ll;
     }
     public List<Ouvrage> listerOuvrages(String genre){
         List<Ouvrage> lot = new ArrayList<>();
-        for(Ouvrage o : louvrage){
-            if(o.getGenre().equals(genre)) lot.add(o);
-        }
+        louvrage.stream().filter(o->o.getGenre().equals(genre)).forEach(l->lot.add(l));
         return lot;
     }
 }
