@@ -1,9 +1,15 @@
 package bibliotheque.mvc.view;
 
 import bibliotheque.metier.Lecteur;
+import bibliotheque.mvc.GestionMVC;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +23,7 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
     @Override
     public void menu() {
         update(controller.getAll());
-        List options = Arrays.asList("ajouter", "retirer", "rechercher","modifier","fin");
+        List options = Arrays.asList("ajouter", "retirer", "rechercher", "modifier", "ajout liste", "fin");
         do {
             int ch = choixListe(options);
 
@@ -35,6 +41,8 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
                     modifier();
                     break;
                 case 5:
+                    ajout_liste();
+                case 6:
                     return;
             }
         } while (true);
@@ -46,10 +54,10 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
     }
 
     private void retirer() {
-        int nl = choixElt(la)-1;
+        int nl = choixElt(la) - 1;
         Lecteur l = la.get(nl);
         boolean ok = controller.remove(l);
-        if(ok) affMsg("lecteur effacé");
+        if (ok) affMsg("lecteur effacé");
         else affMsg("lecteur non effacé");
     }
 
@@ -62,14 +70,14 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
         try {
             System.out.println("numéro de lecteur :");
             int id = lireInt();
-            Lecteur rech = new Lecteur(id,"","",null,"","","");
+            Lecteur rech = new Lecteur(id, "", "", null, "", "", "");
             Lecteur l = controller.search(rech);
-            if(l==null) affMsg("lecteur inconnu");
+            if (l == null) affMsg("lecteur inconnu");
             else {
                 affMsg(l.toString());
-             }
-        }catch(Exception e){
-            System.out.println("erreur : "+e);
+            }
+        } catch (Exception e) {
+            System.out.println("erreur : " + e);
         }
 
     }
@@ -77,8 +85,8 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
 
     public void modifier() {
         int choix = choixElt(la);
-        Lecteur l  = la.get(choix-1);
-         do {
+        Lecteur l = la.get(choix - 1);
+        do {
             try {
                 String nom = modifyIfNotBlank("nom", l.getNom());
                 String prenom = modifyIfNotBlank("prénom", l.getPrenom());
@@ -91,13 +99,13 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
             } catch (Exception e) {
                 System.out.println("erreur :" + e);
             }
-        }while(true);
+        } while (true);
         controller.update(l);
-   }
+    }
 
 
     public void ajouter() {
-       Lecteur l;
+        Lecteur l;
         do {
             try {
                 System.out.println("nom ");
@@ -112,14 +120,33 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
                 String adr = sc.nextLine();
                 System.out.println("tel :");
                 String tel = sc.nextLine();
-                l = new Lecteur(nom,prenom,dn,adr,mail,tel);
+                l = new Lecteur(nom, prenom, dn, adr, mail, tel);
                 break;
             } catch (Exception e) {
-                System.out.println("une erreur est survenue : "+e.getMessage());
+                System.out.println("une erreur est survenue : " + e.getMessage());
             }
-        }while(true);
-        l=controller.add(l);
-        affMsg("création du lecteur : "+l);
+        } while (true);
+        l = controller.add(l);
+        affMsg("création du lecteur : " + l);
     }
 
+    public void ajout_liste() {
+        String chemin_fichier = "C:/Users/Nolwenn/Documents/Condorcet/2 I/Q2/POO 2/nouveaux_lecteurs.txt";
+        try (BufferedReader in = new BufferedReader(new FileReader(chemin_fichier))) {
+            String val;
+            while ((val = in.readLine()) != null) {
+                String[] infos = val.split(" ");
+                String nom = infos[0];
+                String prenom = infos[1];
+                LocalDate dn = LocalDate.parse(infos[2]);
+                String adresse = infos[3];
+                String mail = infos[4];
+                String tel = infos[5];
+                Lecteur lecteur = new Lecteur(nom, prenom, dn, adresse, mail, tel);
+                controller.add(lecteur);
+            }
+        } catch (IOException e) {
+            System.out.println("Accès impossible : " + e.getMessage());
+        }
+    }
 }
