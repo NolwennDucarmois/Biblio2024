@@ -3,7 +3,6 @@ package bibliotheque.mvc.view;
 import bibliotheque.mvc.controller.Controller;
 import bibliotheque.mvc.observer.Observer;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,9 +20,9 @@ public abstract  class AbstractView<T> implements Observer {
 
     public abstract void affList(List la);
 
-    public List<T> getAll(Comparator<? super T> c) {
-        la.sort(c);
-        return la;
+    public List<T> getAll(Comparator<T> cmp){
+          la.sort(cmp);
+          return la;
     }
     @Override
     public void update(List la) {
